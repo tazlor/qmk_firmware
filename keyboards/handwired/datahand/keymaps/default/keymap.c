@@ -180,6 +180,10 @@ static void set_normal(void) {
 }
 
 static void set_nas(bool on) {
+  /* Turn off nas_lock if nas is turned off. */
+  if (!on) {
+    nas_locked = false;
+  }
   /* Always turn on the base NAS layer so other layers can fall through. */
   layer_set(on, NAS);
 
@@ -234,15 +238,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     break;
 
     case NS:
-    if (pressed) {
-      nas_locked = false;
+    if (!nas_locked) {
+      set_nas(pressed);
     }
-    set_nas(pressed);
     break;
     
     case NSL:
     if (pressed) {
-      nas_locked = true;
+      nas_locked = !nas_locked;
       set_nas(true);
     }
     break;
