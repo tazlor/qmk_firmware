@@ -78,4 +78,4 @@
  * DataHands let you remap right ring east as Command, but having it on the thumb is nicer. Comment out this define
  * to use the original layout.
  */
-#define DATAHAND_THUMB_RETURN_COMMAND
+//#define DATAHAND_THUMB_RETURN_COMMAND
